@@ -9,12 +9,11 @@ class CustomParser(argparse.ArgumentParser):
     def error(self, message):
         if 'unrecognized arguments:' in message:
             sys.stderr.write("journalctl: invalid option -- '_'\n")
-            sys.stderr.flush()
-            exit(1)
         else:
             sys.stderr.write(message)
-            sys.stderr.flush()
-            exit(1)
+
+        sys.stderr.flush()
+        exit(1)
 
 LOGS = """-- Logs begin at Fri 2019-07-26 17:13:13 CEST, end at Mon 2020-11-23 09:17:34 CET. --
 Nov 22 11:22:19 zeroed sshd[1480]: Invalid user wqeqwe from 127.0.0.1 port 55818
